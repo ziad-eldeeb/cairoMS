@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Senior Request Page</title>
+  <link rel="stylesheet" href="styled5.css">
+</head>
+<body>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <script>
+$(document).ready(function() {
+  $("#seniorRequestForm").submit(function(event) {
+    event.preventDefault();
+
+    var nationalId = $("#nationalId").val();
+    var seniorStatus = $("#seniorStatus").val(); // Get the seniorStatus value from your form
+
+    $.ajax({
+      type: "PUT",
+      url: "/api/v1/requests/senior/1", // Replace "1" with the actual requestId you want to update
+      data: {
+        seniorStatus: seniorStatus
+      },
+      success: function(response) {
+        console.log(response);
+        // Handle success
+      },
+      error: function(error) {
+        console.log(error);
+        // Handle error
+      }
+    });
+  });
+})
+  </script>
+  <h1>Senior Request Page</h1>
+
+  <form>
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="age">Age:</label>
+    <input type="number" id="age" name="age" required>
+
+    <label for="reason">Upload ID Image:</label>
+    <textarea id="reason" name="reason" required></textarea>
+
+    <button type="submit">Submit Request</button>
+  </form>
+</body>
+</html>
